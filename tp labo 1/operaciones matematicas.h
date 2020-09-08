@@ -38,4 +38,4 @@ int MultiplicarNumeros(int, int);
  * \return int
  *
  */
-int CalcularFactorial(int, int);
+long int CalcularFactorial(int);

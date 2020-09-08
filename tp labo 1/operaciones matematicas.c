@@ -22,11 +22,12 @@ float DividirNumeros(int primerNumero, int segundoNumero)
 {
     float resultado;
 
-    resultado=primerNumero/segundoNumero;
-
-    if(segundoNumero==0)
+    if(segundoNumero!=0)
     {
-        printf("No es posible dividir por 0");
+        resultado=(float)primerNumero/segundoNumero;
+    }else
+    {
+        printf("no es posible dividir por 0");
     }
 
     return resultado;
@@ -37,6 +38,21 @@ int MultiplicarNumeros(int primerNumero, int segundoNumero)
     int resultado;
 
     resultado=primerNumero*segundoNumero;
+
+    return resultado;
+}
+
+long int CalcularFactorial(int numeroIngresado)
+{
+    int resultado;
+
+    if(numeroIngresado!=0)
+    {
+        resultado=numeroIngresado*CalcularFactorial(numeroIngresado-1);
+    }else
+    {
+       resultado=1;
+    }
 
     return resultado;
 }
