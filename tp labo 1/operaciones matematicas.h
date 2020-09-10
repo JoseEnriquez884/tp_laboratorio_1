@@ -1,5 +1,5 @@
 #include <stdio.h>
-/** \brief suma los operandos ingresados
+/** \brief suma los operandos enteros ingresados
  *
  * \param int
  * \param int
@@ -7,7 +7,7 @@
  *
  */
 int SumarNumero(int, int);
-/** \brief resta los operandos ingresados
+/** \brief resta los operandos enteros ingresados
  *
  * \param int
  * \param int
@@ -31,7 +31,7 @@ float DividirNumeros(int, int);
  *
  */
 int MultiplicarNumeros(int, int);
-/** \brief calcula el factorial de los operandos ingresados
+/** \brief calcula el factorial del operando ingresados
  *
  * \param int
  * \param int
