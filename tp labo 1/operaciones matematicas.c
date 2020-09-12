@@ -1,41 +1,35 @@
 #include "operaciones matematicas.h"
 
-int SumarNumero(int primerNumero, int segundoNumero)
+float SumarNumero(float primerNumero, float segundoNumero)
 {
-    int resultado;
+    float resultado;
 
     resultado=primerNumero+segundoNumero;
 
     return resultado;
 }
 
-int RestarNumero(int primerNumero, int segundoNumero)
+float RestarNumero(float primerNumero, float segundoNumero)
 {
-    int resultado;
+    float resultado;
 
     resultado=primerNumero-segundoNumero;
 
     return resultado;
 }
 
-float DividirNumeros(int primerNumero, int segundoNumero)
+float DividirNumeros(float primerNumero, float segundoNumero)
 {
     float resultado;
 
-    if(segundoNumero!=0)
-    {
-        resultado=(float)primerNumero/segundoNumero;
-    }else
-    {
-        printf("no es posible dividir por 0");
-    }
+    resultado=primerNumero/segundoNumero;
 
     return resultado;
 }
 
-int MultiplicarNumeros(int primerNumero, int segundoNumero)
+float MultiplicarNumeros(float primerNumero, float segundoNumero)
 {
-    int resultado;
+    float resultado;
 
     resultado=primerNumero*segundoNumero;
 

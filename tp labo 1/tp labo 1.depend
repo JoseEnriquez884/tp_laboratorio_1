@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1599691794 source:c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\main.c
+1599865349 source:c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"operaciones matematicas.h"
 
-1599691799 source:c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\operaciones matematicas.c
+1599865655 source:c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\operaciones matematicas.c
 	"operaciones matematicas.h"
 
-1599691791 c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\operaciones matematicas.h
+1599879002 c:\users\jose\desktop\repositorio git laboratorio\tp_laboratorio_1\tp labo 1\operaciones matematicas.h
 	<stdio.h>
 
