@@ -37,6 +37,8 @@ int main()
                 factorialDePrimerNumero=CalcularFactorial(primerNumero);
                 factorialDeSegundoNumero=CalcularFactorial(segundoNumero);
 
+                printf("\nSe calcularon todas las operaciones\n");
+
                 if(segundoNumero!=0)
                 {
                     divisionDeNumeros=DividirNumeros(primerNumero, segundoNumero);
