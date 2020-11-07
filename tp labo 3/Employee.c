@@ -59,7 +59,7 @@ int employee_setNombre(Employee* this,char* nombre)
 int employee_getNombre(Employee* this,char* nombre)
 {
     int getteo=0;
-    if(this!=NULL && *nombre!='\0')
+    if(this!=NULL && *nombre!=NULL)
     {
         strcpy(nombre,this->nombre);
         getteo = 1;
