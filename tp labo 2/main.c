@@ -3,6 +3,6 @@
 
 int main()
 {
-    printf("hola mundo prueba");
+    printf("Esto funciona de MaRaVILLA");
     return 0;
 }
