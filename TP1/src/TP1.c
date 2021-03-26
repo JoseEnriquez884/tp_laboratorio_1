@@ -15,18 +15,30 @@
 int main(void)
 {
 	setbuf(stdout,NULL);
-	int factorial;
-	int numeroIngresado;
-	int i;
-	factorial=1;
-
-	numeroIngresado=PedirEntero("ingrese numero para calcular factorial: ");
-
-	for(i=numeroIngresado;i>0;i--)
+	int opcion;
+	do
 	{
-		factorial=factorial*i;
-	}
-	printf("el factorial de %d es: %d",numeroIngresado,factorial);
+		printf("1. ALta\n");
+		printf("2. Bajas\n");
+		printf("3. Modificar\n");
+		printf("4. Salir\n");
+		printf("Elija una opcion: ");
+		scanf("%d", &opcion);
+		switch(opcion)
+		{
+		case 1:
+			printf("Estoy dando de alta\n");
+			break;
+		case 2:
+			printf("Estoy dando de baja\n");
+			break;
+		case 3:
+			printf("Estoy modificando\n");
+			break;
+		}
+
+	}while(opcion!=4);
+
 
 	return EXIT_SUCCESS;
 }
