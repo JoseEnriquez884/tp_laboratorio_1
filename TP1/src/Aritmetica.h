@@ -12,6 +12,7 @@ float SumarNumeros(float,float);
 float RestarNumeros(float,float);
 float MultiplicarNumeros(float,float);
 float DividirNumeros(float,float);
-long long int CalcularFactorial(int);
+long int CalcularFactorial(int);
+
 
 #endif /* ARITMETICA_H_ */

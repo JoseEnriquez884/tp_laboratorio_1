@@ -34,25 +34,24 @@ float DividirNumeros(float dividendo,float divisor)
 
 	return resultado;
 }
-long long int CalcularFactorial(int numeroIngresado)
+long int CalcularFactorial(int numeroIngresado)
 {
 	int i;
-	long long int factorial;
+	long int factorial;
+	factorial=1;
 
-	if(numeroIngresado==0)
-	{
-		factorial=1;
-	}else
+	if(numeroIngresado!=0)
 	{
 		for(i=numeroIngresado;i>0;i--)
 		{
 			factorial=factorial*i;
 		}
+	}else
+	{
+		factorial=1;
 	}
-
-
-
 	return factorial;
 }
+
 
 
