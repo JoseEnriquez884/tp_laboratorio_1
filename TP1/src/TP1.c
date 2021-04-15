@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "PedirDato.h"
 #include "Aritmetica.h"
+#include <limits.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -63,11 +64,11 @@ int main(void)
 		switch(opcion)
 		{
 		case 1:
-			primerOperando=GetFloat("Ingrese primer operando: ","Error, reingrese numero valido: ",-1000,1000);
+			primerOperando=GetFloat("Ingrese primer operando: ","Error, reingrese numero valido: ",INT_MIN,INT_MAX);
 			banderaPrimerOperando=TRUE;
 			break;
 		case 2:
-			segundoOperando=GetFloat("Ingrese segundo operando: ","Error, reingrese numero valido: ",-1000,1000);
+			segundoOperando=GetFloat("Ingrese segundo operando: ","Error, reingrese numero valido: ",INT_MIN,INT_MAX);
 			banderaSegundoOperando=TRUE;
 			break;
 		case 3:
