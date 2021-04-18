@@ -112,6 +112,7 @@ int main(void)
 			{
 				printf("\nNo se puede mostrar los resultados sin antes haber calculado todas las operaciones.\n\n");
 			}
+			banderaDeOperaciones=FALSE;
 			break;
 		}
 
