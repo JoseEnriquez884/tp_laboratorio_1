@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "ArrayEmployees.h"
 
-#define LEN 2
+#define LEN 10
 
 int main(void)
 {
@@ -21,7 +21,9 @@ int main(void)
 	int altaEmpleado;
 	int opcion;
 	int listado;
+	int modificarEmpleado;
 	initEmployees(list,LEN);
+	HardcodeoEmployees(list,LEN);
 
 
 	do
@@ -46,6 +48,19 @@ int main(void)
 				}
 				break;
 			case 2:
+				modificarEmpleado=ModifyEmployee(list,LEN);
+				switch(modificarEmpleado)
+				{
+					case -1:
+						printf("no se encontro el id ingresado\n");
+						break;
+					case 0:
+						printf("se cancelo la modificacion\n");
+						break;
+					case 1:
+						printf("se modifico con exito!\n");
+						break;
+				}
 				break;
 			case 3:
 				break;

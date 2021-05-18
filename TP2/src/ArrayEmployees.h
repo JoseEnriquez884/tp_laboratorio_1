@@ -22,7 +22,8 @@ typedef struct
 	int isEmpty;
 }eEmployee;
 
-int ModifyEmployee(eEmployee list[],int);
+void HardcodeoEmployees(eEmployee[],int);//hecho
+int ModifyEmployee(eEmployee list[],int);//hecho
 void initEmployees(eEmployee list[], int len);//hecho
 int addEmployee(eEmployee list[],int len,int id,char name[20],char lastName[20],float salary,int sector);//hecho
 int GetEmployee(eEmployee list[],int len);//hecho

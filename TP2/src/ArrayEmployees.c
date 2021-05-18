@@ -8,12 +8,106 @@
 #include <string.h>
 #include "ArrayEmployees.h"
 
-int ModifyEmployee(eEmployee list[],int)
+void HardcodeoEmployees(eEmployee list[],int len)
 {
 	int i;
+	int id[]={1,2,3,4,5,6,7,8,9,10};
+	char name[][51]={"mario","brenda","agustin","martin","camila","florencia","emanuel","roberto","lucia","pepe"};
+	char lastName[][51]={"fernandez","rodriguez","perez","bishop","enriquez","lopez","coria","garcia","villalba","varela"};
+	float salary[]={20.000,15.300,16.400,21.300,30.100,44.000,48.500,43.000,15000,10.000};
+	int sector[]={1,20,15,14,16,19,20,17,10,9};
+	int isEmpty[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
+
+	for(i=0;i<len;i++)
+	{
+		list[i].id=id[i];
+		strcpy(list[i].name,name[i]);
+		strcpy(list[i].lastName,lastName[i]);
+		list[i].salary=salary[i];
+		list[i].sector=sector[i];
+		list[i].isEmpty=isEmpty[i];
+	}
+
+
+}
+
+int ModifyEmployee(eEmployee list[],int len)
+{
+	//int i;
 	int retorno;
+	int opcion;
+	int idIngresado;
+	char auxName[51];
+	char auxLastName[51];
+	float auxSalary;
+	int auxSector;
+	char respuesta;
+	int index;
+	retorno=-1;
 
-
+	//puedo modificar nombre, apellido, salario o sector
+	printEmployees(list,len);
+	idIngresado=GetInt("ingrese id del empleado que desea modificar: ","error, reingrese id valido: ",1,1000);
+	index=findEmployeeById(list,len,idIngresado);
+	if(index!=-1)
+	{
+		opcion=GetInt(	"1. modificar nombre\n"
+				"2. modificar apellido\n"
+				"3. modificar salario\n"
+				"4. modificar sector\n"
+				"ingrese opcion: ","error, reingrese opcion valida: ",1,4);
+		switch(opcion)
+		{
+		case 1:
+			GetString("ingrese nuevo nombre: ",auxName);
+			respuesta=GetRespuesta("esta seguro de modificar el nombre?: ","error, reingrese respuesta valida");
+			if(respuesta=='s')
+			{
+				strcpy(list[index].name,auxName);
+				retorno=1;
+			}else
+			{
+				retorno=0;
+			}
+			break;
+		case 2:
+			GetString("ingrese nuevo apellido: ",auxLastName);
+			respuesta=GetRespuesta("esta seguro de modificar el apellido?: ","error, reingrese respuesta valida");
+			if(respuesta=='s')
+			{
+				strcpy(list[index].lastName,auxLastName);
+				retorno=1;
+			}else
+			{
+				retorno=0;
+			}
+			break;
+		case 3:
+			auxSalary=GetFloat("ingrese nuevo salario: ","error, reingrese salario valido: ",1,50000);
+			respuesta=GetRespuesta("esta seguro de modificar el salario?: ","error, reingrese respuesta valida: ");
+			if(respuesta=='s')
+			{
+				list[index].salary=auxSalary;
+				retorno=1;
+			}else
+			{
+				retorno=0;
+			}
+			break;
+		case 4:
+			auxSector=GetInt("ingrese nuevo sector: ","error, reingrese sector valido: ",1,100);
+			respuesta=GetRespuesta("esta seguro de modificar el sextor?: ","error, reingrese respuesta valida: ");
+			if(respuesta=='s')
+			{
+				list[index].sector=auxSector;
+				retorno=1;
+			}else
+			{
+				retorno=0;
+			}
+			break;
+		}
+	}
 
 	return retorno;
 }
@@ -52,7 +146,7 @@ int printEmployees(eEmployee list[], int length)
 
 void PrintOneEmployee(eEmployee unEmpleado)
 {
-	printf("%d %s %s %.2f %d\n",unEmpleado.id,unEmpleado.name,unEmpleado.lastName,unEmpleado.salary,unEmpleado.sector);
+	printf("%d %s %s %.3f %d\n",unEmpleado.id,unEmpleado.name,unEmpleado.lastName,unEmpleado.salary,unEmpleado.sector);
 }
 
 int SearchFree(eEmployee list[],int len)
