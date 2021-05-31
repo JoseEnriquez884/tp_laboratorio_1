@@ -13,6 +13,8 @@
 #include "ArrayEmployees.h"
 
 #define LEN 1000
+#define TRUE 1
+#define FALSE 0
 
 int main(void)
 {
@@ -28,8 +30,9 @@ int main(void)
 	int ordenamientoEmpleados;
 	float salarioTotal;
 	float promediosSalarios;
+	int banderaDeAlta;
 	int contadorEmpleadosMayoresQueElPromedio;
-
+	banderaDeAlta=FALSE;
 
 	initEmployees(list,LEN);
 	//HardcodeoEmployees(list,LEN);
@@ -55,72 +58,91 @@ int main(void)
 				{
 					printf("No hay espacio para cargar un empleado\n");
 				}
+				banderaDeAlta=TRUE;
 				break;
 			case 2:
-				modificarEmpleado=ModifyEmployee(list,LEN);
-				switch(modificarEmpleado)
+				if(banderaDeAlta==TRUE)
 				{
-					case -1:
-						printf("no se encontro el id ingresado\n");
-						break;
-					case 0:
-						printf("se cancelo la modificacion\n");
-						break;
-					case 1:
-						printf("se modifico con exito!\n");
-						break;
+					modificarEmpleado=ModifyEmployee(list,LEN);
+					switch(modificarEmpleado)
+					{
+						case -1:
+							printf("no se encontro el id ingresado\n");
+							break;
+						case 0:
+							printf("se cancelo la modificacion\n");
+							break;
+						case 1:
+							printf("se modifico con exito!\n");
+							break;
+					}
+				}else
+				{
+					printf("para modificar primero debe dar de alta por lo menos un empleado\n");
 				}
 				break;
 			case 3:
-				printEmployees(list,LEN);
-				idEmpleado=GetInt("ingrese id del empleado que desea eliminar: ","error, reingrese id valido: ",1,1000);
-				bajaDeEmpleado=removeEmployee(list,LEN,idEmpleado);
-				switch(bajaDeEmpleado)
+				if(banderaDeAlta==TRUE)
 				{
-					case -1:
-						printf("no se encontro el id del empleado.\n");
-						break;
-					case 1:
-						printf("se dio de baja con exito\n");
-						break;
-					case 0:
-						printf("se cancelo la baja del empleado\n");
-						break;
+					printEmployees(list,LEN);
+					idEmpleado=GetInt("ingrese id del empleado que desea eliminar: ","error, reingrese id valido: ",1,1000);
+					bajaDeEmpleado=removeEmployee(list,LEN,idEmpleado);
+					switch(bajaDeEmpleado)
+					{
+						case -1:
+							printf("no se encontro el id del empleado.\n");
+							break;
+						case 1:
+							printf("se dio de baja con exito\n");
+							break;
+						case 0:
+							printf("se cancelo la baja del empleado\n");
+							break;
+					}
+				}else
+				{
+					printf("para dar de baja primero tiene que dar de alta por lo menos un empleado\n");
 				}
 				break;
 			case 4:
-				do
+				if(banderaDeAlta==TRUE)
 				{
-					opcion4=GetInt(	"1. mostrar listado de empleados ordenados alfabeticamente por apellido y sector\n"
-							"2. Total y promedio de los salarios, y cuántos empleados superan el salario promedio,\n"
-							"3. volver.\n"
-							"ingrese opcion: ","error, reingrese opcion valida: ",1,3);
-					switch(opcion4)
+					do
 					{
-					case 1:
-						opcionDeOrdenamiento=GetInt("¿De que manera desea ver ordenados los empleados?\n"
-													"1. ascendente\n2. descendente\n",
-													"error, reingrese opcion valida: ",1,2);
-						ordenamientoEmpleados=sortEmployees(list,LEN,opcionDeOrdenamiento);
-						if(ordenamientoEmpleados!=0)
+						opcion4=GetInt(	"1. mostrar listado de empleados ordenados alfabeticamente por apellido y sector\n"
+								"2. Total y promedio de los salarios, y cuántos empleados superan el salario promedio,\n"
+								"3. volver.\n"
+								"ingrese opcion: ","error, reingrese opcion valida: ",1,3);
+						switch(opcion4)
 						{
-							printf("se ordenaron todos los empleados!\n");
-						}else
-						{
-							printf("no se pudieron ordenar los empleados!\n ");
+							case 1:
+								opcionDeOrdenamiento=GetInt("¿De que manera desea ver ordenados los empleados?\n"
+										"1. ascendente\n2. descendente\n",
+										"error, reingrese opcion valida: ",1,2);
+								ordenamientoEmpleados=sortEmployees(list,LEN,opcionDeOrdenamiento);
+								if(ordenamientoEmpleados!=0)
+								{
+									printf("se ordenaron todos los empleados!\n");
+								}else
+								{
+									printf("no se pudieron ordenar los empleados!\n ");
+								}
+								printEmployees(list,LEN);
+								break;
+							case 2:
+								salarioTotal=SalaryTotalEmployees(list,LEN);
+								promediosSalarios=AverageSalary(list,LEN);
+								contadorEmpleadosMayoresQueElPromedio=CountExceedAverageSalary(list,LEN,promediosSalarios);
+								printf("total de los salarios: %.2f\n",salarioTotal);
+								printf("promedios de los salarios: %.2f\n",promediosSalarios);
+								printf("cantidad de empleados que superan el salario promedio: %d\n",contadorEmpleadosMayoresQueElPromedio);
+								break;
 						}
-						printEmployees(list,LEN);
-						break;
-					case 2:
-						salarioTotal=SalaryTotalEmployees(list,LEN);
-						promediosSalarios=AverageSalary(list,LEN);
-						contadorEmpleadosMayoresQueElPromedio=CountExceedAverageSalary(list,LEN,promediosSalarios);
-						printf("total de los salarios: %.2f\n",salarioTotal);
-						printf("promedios de los salarios: %.2f\n",promediosSalarios);
-						printf("cantidad de empleados que superan el salario promedio: %d\n",contadorEmpleadosMayoresQueElPromedio);
-						break;
-					}
-				}while(opcion4!=3);
+					}while(opcion4!=3);
+				}else
+				{
+					printf("si desea ver el listado y/o la suma y promedios de los salarios primero tiene que dar de alta por lo menos un empleado\n");
+				}
 				break;
 		}
 
