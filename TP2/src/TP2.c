@@ -29,8 +29,10 @@ int main(void)
 	float salarioTotal;
 	float promediosSalarios;
 	int contadorEmpleadosMayoresQueElPromedio;
-	//initEmployees(list,LEN);
-	HardcodeoEmployees(list,LEN);
+
+
+	initEmployees(list,LEN);
+	//HardcodeoEmployees(list,LEN);
 
 
 	do
