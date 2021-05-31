@@ -11,6 +11,8 @@
 
 #define VACIO 0
 #define OCUPADO -1
+#define UP 1
+#define DOWN 0
 
 typedef struct
 {
@@ -30,10 +32,13 @@ int GetEmployee(eEmployee list[],int len);//hecho
 int GenerateId(eEmployee list[],int len);//hecho
 int SearchFree(eEmployee list[],int len);//hecho
 int findEmployeeById(eEmployee list[], int len,int id);//hecho
-int removeEmployee(eEmployee list[], int len, int id);
+int removeEmployee(eEmployee list[], int len, int id);//hecho
 int sortEmployees(eEmployee list[], int len, int order);
 int printEmployees(eEmployee list[], int length);//hecho
 void PrintOneEmployee(eEmployee);//hecho
-
+float SalaryTotalEmployees(eEmployee list[],int len);//hecho
+int CountEmployees(eEmployee list[],int len);//hecho
+float AverageSalary(eEmployee list[],int len);//hecho
+int CountExceedAverageSalary(eEmployee list[],int len,float averageSalary);//hecho
 
 #endif /* ARRAYEMPLOYEES_H_ */

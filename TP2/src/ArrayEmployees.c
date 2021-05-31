@@ -8,13 +8,135 @@
 #include <string.h>
 #include "ArrayEmployees.h"
 
+int CountExceedAverageSalary(eEmployee list[],int len,float averageSalary)
+{
+	int i;
+	int contadorEmpleadosConSalarioPromedio;
+	contadorEmpleadosConSalarioPromedio=0;
+
+	for(i=0;i<len;i++)
+	{
+		if(list[i].isEmpty==OCUPADO && list[i].salary>averageSalary)
+		{
+			contadorEmpleadosConSalarioPromedio++;
+		}
+	}
+
+	return contadorEmpleadosConSalarioPromedio;
+}
+
+float AverageSalary(eEmployee list[],int len)
+{
+	int contadorEmpleados;
+	float acumuladorSalarios;
+	float average;
+	contadorEmpleados=CountEmployees(list,len);
+	acumuladorSalarios=SalaryTotalEmployees(list,len);
+
+	average=(float)acumuladorSalarios/contadorEmpleados;
+
+	return average;
+}
+
+int CountEmployees(eEmployee list[],int len)
+{
+	int i;
+	int contadorEmpleados;
+	contadorEmpleados=0;
+
+	for(i=0;i<len;i++)
+	{
+		if(list[i].isEmpty==OCUPADO)
+		{
+			contadorEmpleados++;
+		}
+	}
+
+	return contadorEmpleados;
+}
+
+float SalaryTotalEmployees(eEmployee list[],int len)
+{
+	int i;
+	float salaryTotal;
+	salaryTotal=0;
+
+	for(i=0;i<len;i++)
+	{
+		if(list[i].isEmpty==OCUPADO && list[i].salary>0)
+		{
+			salaryTotal=salaryTotal+list[i].salary;
+		}
+	}
+
+	return salaryTotal;
+}
+
+int sortEmployees(eEmployee list[], int len, int order)
+{
+	int i;
+	int j;
+	int retorno;
+	retorno=0;
+	eEmployee auxEmployee;
+	for(i=0;i<len-1;i++)
+	{
+		for(j=i+1;j<len;j++)
+		{
+			if(order==UP)
+			{
+				if(strcmp(list[i].lastName,list[j].lastName)>0 || (strcmp(list[i].lastName,list[j].lastName)==0 && list[i].sector>list[j].sector))
+				{
+					retorno=1;
+					auxEmployee=list[i];
+					list[i]=list[j];
+					list[j]=auxEmployee;
+				}
+			}else
+			{
+				if(strcmp(list[i].lastName,list[j].lastName)<0 || (strcmp(list[i].lastName,list[j].lastName)==0 && list[i].sector<list[j].sector))
+				{
+					retorno=1;
+					auxEmployee=list[i];
+					list[i]=list[j];
+					list[j]=auxEmployee;
+				}
+			}
+		}
+	}
+	return retorno;
+}
+
+int removeEmployee(eEmployee list[], int len, int id)
+{
+	int index;
+	char respuesta;
+	int retorno;
+	retorno=-1;
+	index=findEmployeeById(list,len,id);
+	if(index!=-1)
+	{
+		PrintOneEmployee(list[index]);
+		respuesta=GetRespuesta("esta seguro de eliminar este empleado?: ","error, reingrese respuesta valida: ");
+		if(respuesta=='s')
+		{
+			list[index].isEmpty=VACIO;
+			retorno=1;
+		}else
+		{
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
 void HardcodeoEmployees(eEmployee list[],int len)
 {
 	int i;
 	int id[]={1,2,3,4,5,6,7,8,9,10};
 	char name[][51]={"mario","brenda","agustin","martin","camila","florencia","emanuel","roberto","lucia","pepe"};
 	char lastName[][51]={"fernandez","rodriguez","perez","bishop","enriquez","lopez","coria","garcia","villalba","varela"};
-	float salary[]={20.000,15.300,16.400,21.300,30.100,44.000,48.500,43.000,15000,10.000};
+	float salary[]={20.000,15.300,16.400,21.300,30.100,44.000,48.500,43.000,15.000,10.000};
 	int sector[]={1,20,15,14,16,19,20,17,10,9};
 	int isEmpty[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
 
@@ -33,7 +155,6 @@ void HardcodeoEmployees(eEmployee list[],int len)
 
 int ModifyEmployee(eEmployee list[],int len)
 {
-	//int i;
 	int retorno;
 	int opcion;
 	int idIngresado;
@@ -146,7 +267,7 @@ int printEmployees(eEmployee list[], int length)
 
 void PrintOneEmployee(eEmployee unEmpleado)
 {
-	printf("%d %s %s %.3f %d\n",unEmpleado.id,unEmpleado.name,unEmpleado.lastName,unEmpleado.salary,unEmpleado.sector);
+	printf("|%3d| |%10s| |%10s| |%2.3f| |%2d|\n",unEmpleado.id,unEmpleado.name,unEmpleado.lastName,unEmpleado.salary,unEmpleado.sector);
 }
 
 int SearchFree(eEmployee list[],int len)
@@ -164,6 +285,7 @@ int SearchFree(eEmployee list[],int len)
 	}
 	return index;
 }
+
 
 int GenerateId(eEmployee list[],int len)
 {
@@ -218,6 +340,7 @@ int addEmployee(eEmployee list[],int len,int id,char name[20],char lastName[20],
 			list[index].isEmpty=OCUPADO;
 		}
 	}
+
 
 	return index;
 }
